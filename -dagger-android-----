@@ -1,0 +1,31 @@
+
+
+  子组件模块 和 普通模块的区别 就多了个 子组件初始化，放到map的操作
+
+
+  1、 子组件初始化和放到 MapProvider里去 （）#####区别所在
+
+  2、 bProvider = Bfactory.create(mapProvider)
+
+  3\ 注入操作
+ ——————————————————————————————————————————
+  初始化操作
+    初始化子组件模块--》放入六大类模块Provider
+    初始化普通模块Provider
+    初始化MembersInjector（providerA）
+    //子组件模块有个递归调用过程
+  注入操作
+      注B操作：
+
+ //A的初始化操作?? A是接口方式或自己控制初始化,
+
+ C A=>B 如果报A的初始化问题 而A的实例是系统生成的情况。可以通过重新定义C的Builder接口来解决
+ 注入式：
+    自控注入式 ：自己new A() 然后注入，例子 fragment
+    系统控制式 + Builder{ fun binderA(a:A)：Builder} 例子：application，activity四大组件
+
+ 依赖式：dagger框架自己调A构造，该构造必须inject标记，
+ ————————————————————————————————————————————————————————————————————
+ 理解了dagger-android以后  我们所要做的都是写子组件模块而已
+ 哪些依赖模块需要放在全局app，那么就是MVP中modal模块
+ 子组件模块可以配置使用这个modal模块，另外再配置自己的模块，

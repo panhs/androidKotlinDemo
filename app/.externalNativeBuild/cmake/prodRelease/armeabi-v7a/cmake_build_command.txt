@@ -1,0 +1,15 @@
+Executable : /Users/panheshun/Library/Android/sdk/cmake/3.6.4111459/bin/cmake
+arguments : 
+-H/Users/panheshun/AndroidStudioProjects/allLibsDemo/app
+-B/Users/panheshun/AndroidStudioProjects/allLibsDemo/app/.externalNativeBuild/cmake/prodRelease/armeabi-v7a
+-DANDROID_ABI=armeabi-v7a
+-DANDROID_PLATFORM=android-14
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/Users/panheshun/AndroidStudioProjects/allLibsDemo/app/build/intermediates/cmake/prod/release/obj/armeabi-v7a
+-DCMAKE_BUILD_TYPE=Release
+-DANDROID_NDK=/Users/panheshun/Library/Android/sdk/ndk-bundle
+-DCMAKE_CXX_FLAGS=
+-DCMAKE_TOOLCHAIN_FILE=/Users/panheshun/Library/Android/sdk/ndk-bundle/build/cmake/android.toolchain.cmake
+-DCMAKE_MAKE_PROGRAM=/Users/panheshun/Library/Android/sdk/cmake/3.6.4111459/bin/ninja
+-GAndroid Gradle - Ninja
+jvmArgs : 
+

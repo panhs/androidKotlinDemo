@@ -1,0 +1,93 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+def rext = rootProject.ext
+def DAGGER2_VERSION = rootProject.daggerVersion
+def SUPPORT_VERSION = rootProject.supportLibraryVersion
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "unioncast.cn.alllibsdemo"
+        minSdkVersion 14
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            // Uses new built-in shrinker http://tools.android.com/tech-docs/new-build-system/built-in-shrinker
+            useProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "com.android.support:appcompat-v7:$SUPPORT_VERSION"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation "com.android.support:support-v4:$SUPPORT_VERSION"
+    implementation "com.android.support:recyclerview-v7:$SUPPORT_VERSION"
+    implementation "com.android.support:design:$SUPPORT_VERSION"
+    implementation "com.android.support:support-v4:$SUPPORT_VERSION"
+    testImplementation "junit:junit:$rootProject.junitVersion"
+    androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
+
+    //  kotlin & anko
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rext.kotlin_version"
+    implementation "org.jetbrains.anko:anko-commons:$rext.anko_version"
+
+    //dagger2
+    implementation "com.google.dagger:dagger-android:$DAGGER2_VERSION"
+    implementation "com.google.dagger:dagger-android-support:$DAGGER2_VERSION"
+
+    //kapt
+    kapt 'android.arch.persistence.room:compiler:latest.release'
+    kapt "com.google.dagger:dagger-android-processor:$DAGGER2_VERSION"
+    kapt "com.google.dagger:dagger-compiler:$DAGGER2_VERSION"
+
+    //rxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.RXJAVA2"
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:latest.release'
+    implementation "com.trello.rxlifecycle2:rxlifecycle:$rootProject.RXLIFE"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-android:$rootProject.RXLIFE"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-kotlin:$rootProject.RXLIFE"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:$rootProject.RXLIFE"
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+
+    //retrofit2 net
+    implementation 'com.squareup.retrofit2:retrofit:latest.release'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.OKHTTP_VERSION"
+    implementation 'com.squareup.retrofit2:converter-gson:latest.release'
+
+    //roomdB
+    implementation 'android.arch.persistence.room:runtime:latest.release'
+    kapt 'android.arch.persistence.room:compiler:latest.release'
+    implementation 'android.arch.persistence.room:rxjava2:latest.release'
+    //imageloader
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+}
